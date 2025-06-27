@@ -13,6 +13,12 @@ namespace exercicios
             Console.WriteLine(ExtractEmailInformation("joao.silva23@yahoo.com.br"));
             Console.WriteLine();
             Console.WriteLine(ExtractEmailInformation("maria123@gmail.com"));
+            Console.WriteLine();
+            Console.WriteLine(ExtractEmailInformation("maria123gmail.com"));
+
+            //Console.WriteLine(ExtractDateData("21/07/2010"));
+            //Console.WriteLine();
+            //Console.WriteLine(ExtractDateData("32/14/2023"));
 
         }
 
@@ -28,28 +34,45 @@ namespace exercicios
             Match match = Regex.Match(email,pattern);
             EmailInfo emailInfo = null;
 
-            if (match.Success)
+            if (!match.Success)
             {
-                emailInfo = new EmailInfo(
-                    match.Groups["usuario"].Value,
-                    match.Groups["dominio"].Value
-                );
-                if (emailInfo.Dominio.EndsWith(".br"))
-                {
+            throw new ArgumentException("Email inválido", nameof(email));
+            }
+            emailInfo = new EmailInfo(
+                  match.Groups["usuario"].Value,
+                  match.Groups["dominio"].Value
+              );
+            if (emailInfo.Dominio.EndsWith(".br"))
+            {
                 emailInfo.Brasileiro = "Sim";
-                }
-                else
-                {
-                    emailInfo.Brasileiro = "Não";
-
-                }
-
+            }
+            else
+            {
+                emailInfo.Brasileiro = "Não";
 
             }
-            return emailInfo ?? new EmailInfo("Usuario não encontrado", "Dominio não encontrado");
-
+            return emailInfo;
         }
 
+        public static DateInfo ExtractDateData(string date)
+        {
+            string pattern = @"^(?<dia>0[1-9]|[12][0-9]|3[01])/(?<mes>0[1-9]|1[0-2])/(?<ano>\d{4})$";
+            Match match = Regex.Match(date, pattern);
 
+            DateInfo dateInfo = null;
+            
+            if (!match.Success)
+            {
+                throw new ArgumentException("Data inválida", nameof(date));
+            }
+            dateInfo = new DateInfo
+            {
+                Dia = match.Groups["dia"].Value,
+                Mes = match.Groups["mes"].Value,
+                Ano = match.Groups["ano"].Value
+            };
+            return dateInfo;
+
+        }
     }
 }

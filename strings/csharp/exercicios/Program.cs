@@ -20,9 +20,11 @@ namespace exercicios
             //Console.WriteLine();
             //Console.WriteLine(ExtractDateData("32/14/2023"));
 
-            Console.WriteLine(FormatDate(21, 7, 2010));
-            Console.WriteLine(FormatDate(1, 7, 2010));
+            //Console.WriteLine(FormatDate(21, 7, 2010));
+            //Console.WriteLine(FormatDate(1, 7, 2010));
 
+            Console.WriteLine(ValidatePassword("amerca1@"));
+            Console.WriteLine(ValidatePassword("amrca154682"));
         }
 
         static string RemoveNonDigits(string str)
@@ -88,5 +90,18 @@ namespace exercicios
             
             return $"{dayString}/{monthString}/{yearString}";
         }
+
+        public static bool ValidatePassword(string senha)
+        {
+            string pattern = @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#&]).{8,}$";
+            
+            if (!Regex.IsMatch(senha, pattern))
+            {
+                return false;
+            }
+            return true;
+        }
+        
+        
     }
 }

@@ -10,15 +10,18 @@ namespace exercicios
             //Console.WriteLine(RemoveNonDigits("874092172-93"));
             //Console.WriteLine(RemoveNonDigits("874.092.172-93"));
 
-            Console.WriteLine(ExtractEmailInformation("joao.silva23@yahoo.com.br"));
-            Console.WriteLine();
-            Console.WriteLine(ExtractEmailInformation("maria123@gmail.com"));
-            Console.WriteLine();
-            Console.WriteLine(ExtractEmailInformation("maria123gmail.com"));
+            //Console.WriteLine(ExtractEmailInformation("joao.silva23@yahoo.com.br"));
+            //Console.WriteLine();
+            //Console.WriteLine(ExtractEmailInformation("maria123@gmail.com"));
+            //Console.WriteLine();
+            //Console.WriteLine(ExtractEmailInformation("maria123gmail.com"));
 
             //Console.WriteLine(ExtractDateData("21/07/2010"));
             //Console.WriteLine();
             //Console.WriteLine(ExtractDateData("32/14/2023"));
+
+            Console.WriteLine(FormatDate(21, 7, 2010));
+            Console.WriteLine(FormatDate(1, 7, 2010));
 
         }
 
@@ -72,7 +75,18 @@ namespace exercicios
                 Ano = match.Groups["ano"].Value
             };
             return dateInfo;
+        }
 
+        public static string FormatDate(int day, int month, int year)
+        {
+            string dayString = day.ToString();
+            string monthString = month.ToString();
+            string yearString = year.ToString();
+
+            dayString = dayString.PadLeft(2, '0');
+            monthString = monthString.PadLeft(2, '0');
+            
+            return $"{dayString}/{monthString}/{yearString}";
         }
     }
 }

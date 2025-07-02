@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections;
+using System.Runtime.InteropServices.JavaScript;
+using System.Text.RegularExpressions;
 
 namespace exercicios
 {
@@ -26,8 +28,11 @@ namespace exercicios
             //Console.WriteLine(ValidatePassword("amerca1@"));
             //Console.WriteLine(ValidatePassword("amrca154682"));
 
-            Console.WriteLine(IsAnagram("anagram", "nagaram"));
-            Console.WriteLine(IsAnagram("cat", "rat"));
+            //Console.WriteLine(IsAnagram("anagram", "nagaram"));
+            //Console.WriteLine(IsAnagram("cat", "rat"));
+            
+            Console.WriteLine(IsAnagram2("anagram", "nagaram"));
+            Console.WriteLine(IsAnagram2("cat", "rat"));
             
         }
 
@@ -124,6 +129,30 @@ namespace exercicios
             char[] chars = input.ToCharArray();
             Array.Sort(chars);
             return new string(chars);
+        }
+
+        static bool IsAnagram2(string s, string t)
+        {
+            var count = new int[26];
+            foreach (char c in s)
+            {
+                count[c - 'a']++;
+            }
+
+            foreach (char c in t)
+            {
+                count[c - 'a']--;
+            }
+
+            foreach (int val in count)
+            {
+                if(val != 0)
+                {
+                 return false;   
+                }
+            }
+
+            return true;
         }
 
 

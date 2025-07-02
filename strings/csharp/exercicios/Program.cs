@@ -23,8 +23,12 @@ namespace exercicios
             //Console.WriteLine(FormatDate(21, 7, 2010));
             //Console.WriteLine(FormatDate(1, 7, 2010));
 
-            Console.WriteLine(ValidatePassword("amerca1@"));
-            Console.WriteLine(ValidatePassword("amrca154682"));
+            //Console.WriteLine(ValidatePassword("amerca1@"));
+            //Console.WriteLine(ValidatePassword("amrca154682"));
+
+            Console.WriteLine(IsAnagram("anagram", "nagaram"));
+            Console.WriteLine(IsAnagram("cat", "rat"));
+            
         }
 
         static string RemoveNonDigits(string str)
@@ -101,7 +105,27 @@ namespace exercicios
             }
             return true;
         }
+
+        public static bool IsAnagram(string s, string t)
+        {
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+
+            var sOrder = OrdenarString(s);
+            var tOrder = OrdenarString(t);
+           
+            return sOrder.Equals(tOrder);
+        }
         
-        
+        static string OrdenarString(string input)
+        {
+            char[] chars = input.ToCharArray();
+            Array.Sort(chars);
+            return new string(chars);
+        }
+
+
     }
 }
